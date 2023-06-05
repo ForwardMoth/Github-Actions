@@ -36,6 +36,3 @@ ssh-keygen -m PEM -t rsa -b 4096 -C "your-name-github-secret"
 4. Copy private key in Github repository secrets with ```your-name```
 
 5. Copy public key in .ssh/authorized_keys 
-
-
-SSH_PRIVATE_KEY
