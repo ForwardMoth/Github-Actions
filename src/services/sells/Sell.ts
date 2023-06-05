@@ -89,12 +89,12 @@ class SellService {
         return Sell.sum('count'); 
     }
 
-    async earningByGood(name: string) {
+    async earningByGood(name: any) {
         const good = await Good.findOne({where: {name: name }})
         if (good) return  Sell.sum('price', {where: {goodId: good.id}})
     }
 
-    async countByGood(name: string) {
+    async countByGood(name: any) {
         const good = await Good.findOne({where: {name: name }})
         if (good) return Sell.sum('count', {where: {goodId: good.id}}); 
     }
