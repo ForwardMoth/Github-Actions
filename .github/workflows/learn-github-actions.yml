@@ -1,6 +1,8 @@
 name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
+on: 
+  push: 
+    branches: [ main ]
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -19,16 +21,17 @@ jobs:
         run: npm install
       - name: build project 
         run: npm run build  
-
-      - name: Install SHH key 
-        uses: webfactory/ssh-agent@v0.4.0
+      - name: executing remote ssh server 
+        uses: appleboy/ssh-action@master 
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      
-      - name: Deploy to Remote Server 
-        run: ssh -p 10108 test-user@homebot2.mephi.ru 'cd /home/test-user/app'
-      
-
+          host: ${{ secrets.HOST_NAME }}
+          username: ${{ secrets.USER_NAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script: | 
+            cd /home/test-user/Github-Actions
+            git pull origin main 
+            git status
 
       
 
