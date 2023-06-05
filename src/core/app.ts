@@ -10,7 +10,7 @@ dotenv.config()
 
 
 class App {
-    public port: number
+    public port: string
     public host: string
   
     private app: Express.Application
@@ -18,8 +18,8 @@ class App {
     private sequelize: Sequelize
 
     constructor() {
-        this.port = process.env.PORT
-        this.host = process.env.HOST
+        this.port = process.env.PORT!
+        this.host = process.env.HOST!
     
         this.app = this.createApp()
         this.server = this.createServer()   
