@@ -35,6 +35,7 @@ ssh-keygen -m PEM -t rsa -b 4096 -C "your-name-github-secret"
 
 4. Copy private key in Github repository secrets variables with ```YOUR_NAME_SSH_PRIVATE_KEY```
 
+<<<<<<< HEAD
 5. Copy public key in .ssh/authorized_keys in your remote ssh server
 
 6. Write in yml file new job connected with ssh
@@ -60,3 +61,6 @@ ssh-keygen -m PEM -t rsa -b 4096 -C "your-name-github-secret"
 7. Add new secrets variables ```secrets.HOST_NAME```, 
 ```secrets.USER_NAME```, ```secrets.SSH_PRIVATE_KEY```, 
 ```secrets.PORT``` in your github repository 
+=======
+5. Copy public key in .ssh/authorized_keys 
+>>>>>>> 357c6620bd1bda6029170fec97222f3a3ba56791
