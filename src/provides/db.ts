@@ -8,14 +8,11 @@ import dotenv from "dotenv";
 dotenv.config()
 
 
-const sequelize = new Sequelize({
-  database: process.env.DATABASE,
-  dialect: process.env.DIALECT,
-  username: process.env.USERNAME,
-  password: process.env.PASSWORD,
-  storage: process.env.STORAGE, 
-  logging: console.log,
-})
+const sequelize = new Sequelize(process.env.DATABASE!, process.env.USERNAME!, process.env.PASSWORD,
+  {
+    dialect: "sqlite",
+    storage: "db.sqlite", 
+    logging: console.log});
 
 const models = [Admin, Good, Sell, Staff]
 
