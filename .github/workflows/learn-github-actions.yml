@@ -2,8 +2,8 @@ name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
-  init:
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: debian-latest
 
     strategy:
       matrix: 
@@ -18,7 +18,18 @@ jobs:
       - name: install modules
         run: npm install
       - name: build project 
-        run: npm run build 
+        run: npm run build  
+
+      - name: Install SHH key 
+        uses: webfactory/ssh-agent@v0.4.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      
+      - name: Deplou to Remote Server 
+        run: ssh -p 10108 test-user@homebot2.mephi.ru 'cd /home/test-user/app'
+      
+
+
       
 
 
