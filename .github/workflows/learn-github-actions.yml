@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
   deploy:
-    runs-on: debian-latest
+    runs-on: ubuntu-latest
 
     strategy:
       matrix: 
@@ -25,7 +25,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       
-      - name: Deplou to Remote Server 
+      - name: Deploy to Remote Server 
         run: ssh -p 10108 test-user@homebot2.mephi.ru 'cd /home/test-user/app'
       
 
