@@ -52,7 +52,7 @@ class StaffService {
             const staff = await Staff.findByPk(id)
 
             if (staff) {
-                const deletedStaff = await staff.destroy({where: {id: id}})
+                const deletedStaff = await Staff.destroy({where: {id: id}})
 
                 return deletedStaff
             }

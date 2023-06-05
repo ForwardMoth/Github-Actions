@@ -53,7 +53,7 @@ class GoodService {
             const good = await Good.findByPk(id)
 
             if (good) {
-                const deletedGood = await good.destroy({where: {id: id}})
+                const deletedGood = await Good.destroy({where: {id: id}})
 
                 return deletedGood
             }
