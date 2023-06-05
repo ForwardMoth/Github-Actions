@@ -9,7 +9,7 @@ name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
 on: [push]
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -33,9 +33,30 @@ jobs:
 ssh-keygen -m PEM -t rsa -b 4096 -C "your-name-github-secret"
 ```
 
-4. Copy private key in Github repository secrets with ```your-name```
+4. Copy private key in Github repository secrets variables with ```YOUR_NAME_SSH_PRIVATE_KEY```
 
-5. Copy public key in .ssh/authorized_keys 
+5. Copy public key in .ssh/authorized_keys in your remote ssh server
 
+6. Write in yml file new job connected with ssh
 
-SSH_PRIVATE_KEY
+```yml
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build 
+    steps:
+      - name: executing remote ssh server 
+        uses: appleboy/ssh-action@master 
+        with:
+          host: ${{ secrets.HOST_NAME }}
+          username: ${{ secrets.USER_NAME }}
+          key: ${{ secrets.YOUR_NAME_SSH_PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script: | 
+            cd /path/to/your/app
+            git pull origin main 
+            git status
+``` 
+
+7. Add new secrets variables ```secrets.HOST_NAME```, 
+```secrets.USER_NAME```, ```secrets.SSH_PRIVATE_KEY```, 
+```secrets.PORT``` in your github repository 
